@@ -46,4 +46,10 @@ fun TampilData(
                         text = stringResource(id = R.string.tampil),
                         color = Color.White
                     )
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = colorResource(id = R.color.teal_700)
+                )
+            )
+        }
 
