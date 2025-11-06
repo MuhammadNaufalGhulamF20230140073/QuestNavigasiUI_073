@@ -1,6 +1,5 @@
 package com.example.navigasi
 
-import android.widget.MediaController
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -10,8 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 
-enum class Navigasi{
-
+enum class Navigasi {
     Formulirku,
     Detail
 }
@@ -19,23 +17,29 @@ enum class Navigasi{
 @Composable
 fun DataApp(
     navController: NavHostController = rememberNavController(),
-    modifier: Modifier
-){
-    Scaffold { isiRuang->
+    modifier: Modifier = Modifier
+) {
+    Scaffold { isiRuang ->
         NavHost(
             navController = navController,
             startDestination = Navigasi.Formulirku.name,
+            modifier = Modifier.padding(isiRuang)
+        ) {
+            composable(route = Navigasi.Formulirku.name) {
+                FormIsian(
+                    OnSubmitBtnClick = {
+                        navController.navigate(Navigasi.Detail.name)
+                    }
+                )
+            }
 
-            modifier = Modifier.padding(isiRuang)){
-                composable(route = Navigasi.Formulirku.name){
-                    FormIsian(
-                        OnSubmitBtnClick = {
-                            navController.navigate(Navigasi.Detail.name)
-                        }
-                    )
-                }
-
-                }
-
+            composable(route = Navigasi.Detail.name) {
+                TampilData(
+                    onBackBtnClick = {
+                        cancelAndBackToFormulirku(navController)
+                    }
+                )
+            }
+        }
     }
 }
