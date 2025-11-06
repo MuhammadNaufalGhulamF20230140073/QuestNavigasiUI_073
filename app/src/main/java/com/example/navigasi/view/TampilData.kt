@@ -74,6 +74,24 @@ fun TampilData(
                             fontSize = 22.sp
                         )
                     }
+                    HorizontalDivider(
+                        modifier = Modifier.padding(vertical = 8.dp),
+                        thickness = 1.dp,
+                        color = Color.Gray
+                    )
+                }
+
+                Spacer(modifier = Modifier.weight(1f))
+                Button(
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = onBackBtnClick
+                ) {
+                    Text(text = stringResource(id = R.string.back))
+                }
+            }
+        }
+    }
+}
 
 
 
